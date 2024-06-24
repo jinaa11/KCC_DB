@@ -139,3 +139,17 @@ SELECT * FROM (
             ORDER BY seq DESC) temp
 )
 WHERE ROW_NUM BETWEEN 6 AND 10;
+
+DELETE FROM board;
+commit;
+
+CREATE SEQUENCE board_seq;
+INSERT INTO board VALUES(board_seq.nextval,'a1', 'a', 'a', sysdate, 0);
+INSERT INTO board(seq, title, writer, contents, regdate, hitcount)
+(select board_seq.nextval, title, writer, contents, regdate, hitcount from board);
+
+SELECT * FROM board
+WHERE seq = 99999;
+
+ALTER TABLE board
+ADD CONSTRAINT board_seq_pk PRIMARY KEY(seq);
