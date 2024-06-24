@@ -153,3 +153,12 @@ WHERE seq = 99999;
 
 ALTER TABLE board
 ADD CONSTRAINT board_seq_pk PRIMARY KEY(seq);
+
+UPDATE board SET title = 'a100000'
+WHERE seq = 100000;
+
+SELECT title FROM board
+WHERE title = 'a100000';
+
+CREATE INDEX board_title_index
+ON board(title);
