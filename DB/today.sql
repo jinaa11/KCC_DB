@@ -205,7 +205,7 @@ INNER JOIN locations l
 ON d.location_id = l.location_id
 WHERE l.city = 'Seattle';
 
-SELECT A.last_name || 'ÀÇ ¸Å´ÏÀú´Â ' || B.last_name || 'ÀÌ´Ù.'
+SELECT A.last_name || 'Ã€Ã‡ Â¸Ã…Â´ÃÃ€ÃºÂ´Ã‚ ' || B.last_name || 'Ã€ÃŒÂ´Ã™.'
 FROM employees A, employees B
 WHERE A.manager_id = B.employee_id
 AND A.last_name = 'Kochhar';
