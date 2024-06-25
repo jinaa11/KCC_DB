@@ -1,4 +1,4 @@
--- ¼­ºê Äõ¸®
+-- ì„œë¸Œ ì¿¼ë¦¬
 SELECT AVG(salary) FROM employees;
 
 SELECT last_name, salary
@@ -9,14 +9,14 @@ SELECT last_name, salary
 FROM employees
 WHERE salary > (SELECT AVG(salary) FROM employees);
 
--- ÄûÁî hr> ¡®Chen¡¯ »ç¿øº¸´Ù salary¸¦ ¸¹ÀÌ ¹Þ´Â »ç¿ø ¸ñ·ÏÀ» Ãâ·ÂÇÏ¶ó.
+-- í€´ì¦ˆ hr> â€˜Chenâ€™ ì‚¬ì›ë³´ë‹¤ salaryë¥¼ ë§Žì´ ë°›ëŠ” ì‚¬ì› ëª©ë¡ì„ ì¶œë ¥í•˜ë¼.
 SELECT last_name , salary
 FROM employees
 WHERE salary > 
     (SELECT salary FROM employees
     WHERE last_name = 'Chen');
 
--- ´ÙÁß ÄÃ·³, ´ÙÁß ·Î¿ì
+-- ë‹¤ì¤‘ ì»¬ëŸ¼, ë‹¤ì¤‘ ë¡œìš°
 SELECT employee_id, last_name, salary, job_id
 FROM employees
 WHERE salary = (SELECT MAX(salary) FROM employees
@@ -25,19 +25,19 @@ GROUP BY job_id);
 SELECT MAX(salary) FROM employees
 GROUP BY job_id;
 
--- ´ÙÁß ·Î¿ì Ã³¸®
+-- ë‹¤ì¤‘ ë¡œìš° ì²˜ë¦¬
 SELECT employee_id, last_name, salary, job_id
 FROM employees
 WHERE salary IN (SELECT MAX(salary) FROM employees
 GROUP BY job_id);
 
--- ´ÙÁß ÄÃ·³ Ã³¸®
+-- ë‹¤ì¤‘ ì»¬ëŸ¼ ì²˜ë¦¬
 SELECT employee_id, last_name, salary, job_id
 FROM employees
 WHERE (salary, job_id) IN (SELECT MAX(salary), job_id FROM employees
 GROUP BY job_id);
 
--- FROMÀý ¼­ºêÄõ¸®(n-tier)
+-- FROMì ˆ ì„œë¸Œì¿¼ë¦¬(n-tier)
 SELECT employee_id ,last_name, hire_date
 FROM employees
 ORDER BY hire_date;
@@ -59,8 +59,8 @@ FROM (SELECT employee_id, last_name, salary
         ORDER BY salary DESC) alias
 WHERE ROWNUM <= 3;        
 
--- Á¾ÇÕ mission
--- ¼­ºêÄõ¸®¹®Á¦.txt
+-- ì¢…í•© mission
+-- ì„œë¸Œì¿¼ë¦¬ë¬¸ì œ.txt
 -- 1)
 SELECT department_id FROM employees
 WHERE last_name = 'Patel';
