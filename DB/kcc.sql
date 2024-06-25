@@ -3,25 +3,25 @@
 SELECT dno, eno, ename, job
 FROM emp
 WHERE dno != (SELECT dno FROM emp
-                WHERE ename = 'Á¤ÀÇÂù')
+                WHERE ename = 'ì •ì˜ì°¬')
 AND job = (SELECT job FROM emp
-            WHERE ename = 'Á¤ÀÇÂù');
+            WHERE ename = 'ì •ì˜ì°¬');
 -- 2)
 SELECT st.sno, st.sname, g.grade
 FROM student st, score sc, course c, scgrade g
 WHERE st.sno = sc.sno
 AND c.cno = sc.cno
-AND cname = 'ÀÏ¹İÈ­ÇĞ'
+AND cname = 'ì¼ë°˜í™”í•™'
 AND result BETWEEN loscore AND hiscore
 AND grade > (SELECT grade 
             FROM student st, score sc, course c, scgrade g
             WHERE st.sno = sc.sno 
             AND sc.cno = c.cno
-            AND st.sname = '°ü¿ì'
-            AND c.cname = 'ÀÏ¹İÈ­ÇĞ'
+            AND st.sname = 'ê´€ìš°'
+            AND c.cname = 'ì¼ë°˜í™”í•™'
             AND result BETWEEN loscore AND hiscore);
 
--- HAVINGÀı ¼­ºêÄõ¸®           
+-- HAVINGì ˆ ì„œë¸Œì¿¼ë¦¬           
 SELECT MAX(AVG(sal)) FROM emp
 GROUP BY dno;
 
@@ -30,7 +30,7 @@ GROUP BY dno
 HAVING AVG(sal) = (SELECT MAX(AVG(sal)) FROM emp
 					GROUP BY dno);
                     
--- ÄûÁî> ÇĞ»ı ÀÎ¿ø ¼ö°¡ °¡Àå ¸¹Àº ÇĞ°ú¸¦ Ãâ·ÂÇÏÀÚ.
+-- í€´ì¦ˆ> í•™ìƒ ì¸ì› ìˆ˜ê°€ ê°€ì¥ ë§ì€ í•™ê³¼ë¥¼ ì¶œë ¥í•˜ì.
 SELECT major FROM student
 GROUP BY major
 HAVING COUNT(*) = (SELECT MAX(COUNT(*)) FROM student
@@ -48,9 +48,9 @@ HAVING AVG(result) = (SELECT MIN(AVG(result)) FROM score
 SELECT major, syear, sname, avr
 FROM student
 WHERE avr <= (SELECT AVG(avr) FROM student
-                WHERE major = 'È­ÇĞ'
+                WHERE major = 'í™”í•™'
                 AND syear = 1)
-AND major = 'È­ÇĞ'
+AND major = 'í™”í•™'
 AND syear = 1;
 
 -- ANY, ALL
@@ -62,7 +62,7 @@ FROM emp
 WHERE sal < (SELECT MIN(sal) FROM emp
 WHERE dno = 10);
 
--- ALL: °¡Àå ÀÛÀº °ªº¸´Ù ÀÛ´Ù.
+-- ALL: ê°€ì¥ ì‘ì€ ê°’ë³´ë‹¤ ì‘ë‹¤.
 SELECT eno, ename, sal, dno
 FROM emp
 WHERE sal < ALL(SELECT sal FROM emp
@@ -82,17 +82,17 @@ WHERE sal < ANY(SELECT sal FROM emp
 SELECT ename, mgr
 FROM emp
 WHERE (mgr, job) IN (SELECT mgr, JOB FROM emp
-                WHERE ename = '¼ÕÇÏ´Ã');
+                WHERE ename = 'ì†í•˜ëŠ˜');
 -- 4)
 SELECT sname, avr FROM student
 WHERE avr IN (SELECT avr FROM student
-                WHERE major = 'È­ÇĞ');
+                WHERE major = 'í™”í•™');
 -- 5)
 SELECT syear, sname, avr
 FROM student
 WHERE (avr, syear) IN (SELECT avr, syear FROM student
-                         WHERE major = 'È­ÇĞ')
-AND major != 'È­ÇĞ';
+                         WHERE major = 'í™”í•™')
+AND major != 'í™”í•™';
 -- 6)
 SELECT c.cno, c.cname, p.pname, AVG(result)
 FROM professor p, course c, score s
@@ -102,7 +102,7 @@ GROUP BY c.cname, c.cno, p.pname
 HAVING AVG(s.result) > (SELECT AVG(s.result)
                     FROM score s, course c
                     WHERE s.cno = c.cno
-                    AND c.cname = 'ÇÙÈ­ÇĞ');
+                    AND c.cname = 'í•µí™”í•™');
                     
 CREATE TABLE board(
 	seq NUMBER,
@@ -124,7 +124,7 @@ INSERT INTO board VALUES(8, 'a8', 'a', 'a', sysdate, 0);
 INSERT INTO board VALUES(9, 'a9', 'a', 'a', sysdate, 0);
 INSERT INTO board VALUES(10, 'a10', 'a', 'a', sysdate, 0);
 
--- board Å×ÀÌºí »óÀ§ 5°³¸¦ 5,4,3,2,1 ¼øÀ¸·Î Ãâ·ÂÇÏÀÚ
+-- board í…Œì´ë¸” ìƒìœ„ 5ê°œë¥¼ 5,4,3,2,1 ìˆœìœ¼ë¡œ ì¶œë ¥í•˜ì
 SELECT * FROM board
 ORDER BY seq DESC;
 
