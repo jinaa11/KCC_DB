@@ -1,0 +1,42 @@
+--set serveroutput on;
+--DECLARE
+--    dept_record dept%ROWTYPE;
+--BEGIN
+--    SELECT * INTO dept_record
+--    FROM dept
+--    WHERE deptno = 40;
+--    
+--    DBMS_OUTPUT.PUT_LINE(dept_record.deptno || ' ' || 
+--    dept_record.dname || ' ' || dept_record.loc);
+--END;
+
+-- 제어문(조건문 IF`)
+--DECLARE
+--	v_no NUMBER := 7;
+--	v_score NUMBER := 80;
+--BEGIN
+--	-- 단수
+--	/*
+--	IF v_no = 7 THEN
+--		DBMS_OUTPUT.PUT_LINE('7이다.');
+--	END IF;
+--	*/
+--	-- IF ~ ELSE ~ END IF;
+--	/*
+--	IF v_no = 5 THEN
+--		DBMS_OUTPUT.PUT_LINE('5이다.');
+--	ELSE
+--		DBMS_OUTPUT.PUT_LINE('5가 아니다.');
+--	END IF;
+--	*/
+--	-- IF ~ ELSIF ~ END IF
+--	IF v_score >= 90 THEN
+--		DBMS_OUTPUT.PUT_LINE('A학점');
+--	ELSIF v_score >= 80 THEN
+--		DBMS_OUTPUT.PUT_LINE('B학점');
+--	ELSIF v_score >= 70 THEN
+--		DBMS_OUTPUT.PUT_LINE('C학점');
+--	ELSE
+--		DBMS_OUTPUT.PUT_LINE('F학점');
+--	END IF;
+--END;
