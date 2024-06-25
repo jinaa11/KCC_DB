@@ -34,7 +34,7 @@ AND e.deptno = 10;
 SELECT sal FROM emp
 WHERE job = 'SALESMAN';
 
--- ดูม฿วเ ป็ฟ๋
+-- ยดรรรรร  ยปรงยฟรซ
 SELECT e.empno, e.ename, e.sal, s.grade
 FROM emp e
 JOIN salgrade s
@@ -43,7 +43,7 @@ WHERE sal > (SELECT MAX(sal) FROM emp
                 WHERE job = 'SALESMAN')
 ORDER bY e.empno;
 
--- ดูม฿วเ ป็ฟ๋ X
+-- ยดรรรรร  ยปรงยฟรซ X
 SELECT e.empno, e.ename, e.sal, s.grade
 FROM emp e
 JOIN salgrade s
